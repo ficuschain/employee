@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CRUD Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<body>
+  {% load crispy_forms_tags %}
+    <div class="container mt-5">
+        <div class="jumbotron mt-5">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6">
+                <form action="/" method="POST">
+                    {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-primary" name='reg'>Submit</button>
+                  </form>
+                      </div>
+                      <div class="col-3"></div>
+                      </div>
+        </div>
+    </div>
+
+    <div class="container bg-secondry">
+            <table class="table table-light">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Postion</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for emp in emp %}
+                      <tr>
+                        <th scope="row">{{ emp.name }}</th>
+                        <td>{{ emp.position }}</td>
+                        <td>{{ emp.salary }}</td>
+                        <td><a class="btn btn-primary" href="edit/{{ emp.id}}">Edit</a></td>
+                        <td><a class="btn btn-danger" href="delete/{{ emp.id }}">Delete</a></td>
+                      </tr>
+                      {% endfor %} 
+                    </tbody>
+                  </table>
+    </div>
+        
+    
+</body>
+</html>
